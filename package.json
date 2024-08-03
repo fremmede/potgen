@@ -1,0 +1,21 @@
+{
+  "name": "potgen",
+  "version": "2.0.1",
+  "description": "PotGen makes generating .pot files a straightforward process. With PotGen, you can create translation files quickly and efficiently, simplifying the localization of your projects.",
+  "main": "pot.js",
+  "scripts": {
+    "postinstall": "node ./scripts/postinstall.js"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "pot",
+    "php"
+  ],
+  "author": "Fremder",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.0.1",
+    "glob": "^8.0.3"
+  }
+}

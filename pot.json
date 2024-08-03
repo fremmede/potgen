@@ -1,0 +1,9 @@
+{
+  "sourcePattern": "**/*.{php,js}",
+  "destFile": "languages/${domain}.pot",
+  "package": "Default Package",
+  "domain": "default-domain",
+  "lastTranslator": "DEFAULT TRANSLATOR <default@example.com>",
+  "bugReport": "https://default.com/bugs",
+  "version": "1.0.0"
+}
