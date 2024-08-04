@@ -1,6 +1,15 @@
 # PotGen
+[![npm version](https://img.shields.io/npm/v/potgen.svg)](https://npmjs.org/package/potgen)
+[![npm type definitions](https://img.shields.io/npm/types/potgen)](https://npmjs.org/package/potgen)
+[![Build Status](https://img.shields.io/github/workflow/status/fremmede/potgen/CI)](https://github.com/fremmede/potgen/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/fremmede/potgen)](https://codecov.io/gh/fremmede/potgen)
+[![npm downloads](https://img.shields.io/npm/dm/potgen.svg)](https://npmjs.org/package/potgen)
+[![GitHub issues](https://img.shields.io/github/issues/fremmede/potgen)](https://github.com/fremmede/potgen/issues)
+[![NPM License](https://img.shields.io/npm/l/potgen)](https://npmjs.org/package/potgen)
 
 PotGen simplifies the generation of `.pot` files, allowing you to create translation files quickly and efficiently, thereby facilitating the localization of your projects.
+
+Read in other languages: English | [Spanish](./README_es-ES.md)
 
 ## Table of Contents
 

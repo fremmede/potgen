@@ -8,9 +8,13 @@
   },
   "keywords": [
     "wordpress",
+    "theme",
     "plugin",
     "pot",
-    "php"
+    "php",
+    "js",
+    "translation",
+    "internalization"
   ],
   "author": "Fremder",
   "homepage": "https://github.com/fremmede/potgen#readme",
