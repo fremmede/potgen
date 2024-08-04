@@ -2,6 +2,7 @@
 [![npm version](https://img.shields.io/npm/v/potgen.svg)](https://npmjs.org/package/potgen)
 [![npm downloads](https://img.shields.io/npm/dm/potgen.svg)](https://npmjs.org/package/potgen)
 [![Node Status](https://github.com/fremmede/potgen/actions/workflows/ci.yml/badge.svg)](https://github.com/fremmede/potgen/actions/workflows/node.js.yml)
+[![Node Version](https://img.shields.io/node/v/potgen.svg)](https://npmjs.org/package/potgen)
 [![GitHub issues](https://img.shields.io/github/issues/fremmede/potgen)](https://github.com/fremmede/potgen/issues)
 [![NPM License](https://img.shields.io/npm/l/potgen)](https://npmjs.org/package/potgen)
 
