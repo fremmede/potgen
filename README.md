@@ -21,6 +21,7 @@ Read in other languages: English | [Spanish](./README_es-ES.md)
 - [Features](#features)
 - [Recent Updates](#recent-updates)
 - [Contribution](#contribution)
+- [Donate](#donate) 
 - [License](#license)
 
 
@@ -105,7 +106,7 @@ We've updated PotGen to handle various special cases in WordPress internationali
 
 **PHP Code:**
 ```php
-printf( __('Hey, I noticed you\'ve been using <strong>%1$s</strong> for more than 2 weeks.', 'text-domain'), 'WC Swift QR Payment' );
+printf( __('Hey, I noticed you\'ve been using <strong>%1$s</strong> for more than 2 weeks.', 'text-domain'), 'WooCommerce' );
 ```
 
 **Generated in .pot:**
@@ -172,6 +173,12 @@ These changes were made in the `generatePotFile()` function of PotGen:
 ## Contribution
 
 If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request on the PotGen GitHub repository.
+
+## Donate
+
+If you appreciate this project and would like to support its continued development, you can make a donation via [Ko-fi](https://ko-fi.com/fremmede). Your support is greatly appreciated!
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J710SIW5)
 
 ## License
 

@@ -19,6 +19,7 @@ PotGen simplifica la generación de archivos `.pot`, permitiéndote crear archiv
 - [Características](#características)
 - [Actualizaciones Recientes](#actualizaciones-recientes)
 - [Contribución](#contribución)
+- [Donar](#donar) 
 - [Licencia](#licencia)
 
 ## Instalación
@@ -101,7 +102,7 @@ Hemos actualizado PotGen para manejar correctamente varios casos especiales en l
 
 **Código PHP:**
 ```php
-printf( __('Hey, I noticed you\'ve been using <strong>%1$s</strong> for more than 2 weeks.', 'text-domain'), 'WC Swift QR Payment' );
+printf( __('Hey, I noticed you\'ve been using <strong>%1$s</strong> for more than 2 weeks.', 'text-domain'), 'WooCommerce' );
 ```
 
 **Generado en .pot:**
@@ -168,6 +169,12 @@ Estos cambios se realizaron en la función `generatePotFile()` de PotGen:
 ## Contribución
 
 Si encuentras algún problema o tienes sugerencias para mejoras, no dudes en abrir un problema o enviar una solicitud de extracción en el repositorio de PotGen en GitHub.
+
+## Donar
+
+Si aprecias este proyecto y te gustaría apoyar su desarrollo continuo, puedes hacer una donación a través de [Ko-fi](https://ko-fi.com/fremmede). ¡Tu apoyo es muy apreciado!
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J710SIW5)
 
 ## Licencia
 
