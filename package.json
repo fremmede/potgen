@@ -29,5 +29,8 @@
   },
   "bugs": {
     "url": "https://github.com/fremmede/potgen/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
