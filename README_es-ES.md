@@ -1,9 +1,7 @@
 # PotGen
 [![npm version](https://img.shields.io/npm/v/potgen.svg)](https://npmjs.org/package/potgen)
-[![npm type definitions](https://img.shields.io/npm/types/potgen)](https://npmjs.org/package/potgen)
-[![Build Status](https://img.shields.io/github/workflow/status/fremmede/potgen/CI)](https://github.com/fremmede/potgen/actions)
-[![Coverage Status](https://img.shields.io/codecov/c/github/fremmede/potgen)](https://codecov.io/gh/fremmede/potgen)
 [![npm downloads](https://img.shields.io/npm/dm/potgen.svg)](https://npmjs.org/package/potgen)
+[![Node Status](https://github.com/fremmede/potgen/actions/workflows/ci.yml/badge.svg)](https://github.com/fremmede/potgen/actions/workflows/node.js.yml)
 [![GitHub issues](https://img.shields.io/github/issues/fremmede/potgen)](https://github.com/fremmede/potgen/issues)
 [![NPM License](https://img.shields.io/npm/l/potgen)](https://npmjs.org/package/potgen)
 
