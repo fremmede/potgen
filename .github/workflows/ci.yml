@@ -17,5 +17,5 @@ jobs:
         node-version: '20.x'
     - name: Install dependencies
       run: npm install
-    - name: Run pot script
-      run: npm run pot
+    - name: Run pot generation
+      run: node pot.js
