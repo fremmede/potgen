@@ -176,9 +176,9 @@ If you encounter any issues or have suggestions for improvements, please feel fr
 
 ## Donate
 
-If you appreciate this project and would like to support its continued development, you can make a donation via [Ko-fi](https://ko-fi.com/fremmede). Your support is greatly appreciated!
+If you appreciate this project and would like to support its continued development, you can make a donation via <a href="https://ko-fi.com/fremmede" target="_blank" rel="noopener noreferrer">Ko-fi</a>. Your support is greatly appreciated!
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J710SIW5)
+<a href="https://ko-fi.com/J3J710SIW5" target="_blank" rel="noopener noreferrer"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="ko-fi"></a>
 
 ## License
 
