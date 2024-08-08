@@ -21,7 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^11.0.1",
-    "glob": "^8.0.3"
+    "glob": "^8.0.3",
+    "gulp": "^5.0.0",
+    "gulp-po2mo": "^1.0.3"
   },
   "repository": {
     "type": "git",
@@ -32,9 +34,5 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  },
-  "devDependencies": {
-    "gulp": "^5.0.0",
-    "gulp-po2mo": "^1.0.3"
   }
 }
