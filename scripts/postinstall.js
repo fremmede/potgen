@@ -4,8 +4,8 @@ const path = require('path');
 // Define the file paths
 const sourcePotJson = path.join(__dirname, '../pot.json');
 const destPotJson = path.join(__dirname, '../../../pot.json');
-const sourceGulpfile = path.join(__dirname, '../gulpfile.js');
-const destGulpfile = path.join(__dirname, '../../../gulpfile.js');
+const sourceGulpfile = path.join(__dirname, '../Gulpfile.js');
+const destGulpfile = path.join(__dirname, '../../../Gulpfile.js');
 
 // Check if pot.json already exists at the destination
 if (!fs.existsSync(destPotJson)) {
