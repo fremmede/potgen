@@ -32,5 +32,9 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-po2mo": "^1.0.3"
   }
 }

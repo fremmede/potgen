@@ -5,5 +5,7 @@
   "domain": "default-domain",
   "lastTranslator": "DEFAULT TRANSLATOR <default@example.com>",
   "bugReport": "https://default.com/bugs",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "createPoFiles": false,
+  "languages": ["es_ES", "es_PE", "ru_RU"]  
 }
