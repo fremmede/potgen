@@ -1,6 +1,3 @@
-Aquí tienes el contenido del README en formato `README.md`, mejorado y estructurado para mayor claridad y presentación:
-
-```markdown
 # PotGen
 
 [![npm version](https://img.shields.io/npm/v/potgen.svg)](https://npmjs.org/package/potgen)
@@ -212,16 +209,4 @@ Si aprecias este proyecto y te gustaría apoyar su desarrollo continuo, puedes h
 
 ## Licencia
 
-PotGen está licenciado bajo la [Licencia MIT](https://opensource.org/licenses/MIT).
-```
-
-### Notas sobre el Formato
-
-- **Encabezados y Secciones**: Se han utilizado encabezados y secciones para mejorar la organización.
-- **Listas y Tablas**: Se han utilizado listas y tablas para presentar la información de manera clara y concisa.
-- **Comandos y Salidas**: Se han formateado los comandos y las salidas esperadas para facilitar la lectura.
-
-Si necesitas más ajustes o tienes otras preguntas, ¡no dudes en preguntar!
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/1374474/15523791-3dfc-4467-854c-ba73587ddb16/paste.txt
+PotGen está licenciado bajo la [Licencia MIT](https://opensource.org/licenses/MIT)

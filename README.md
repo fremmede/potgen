@@ -183,4 +183,4 @@ If you appreciate this project and would like to support its continued developme
 
 ## License
 
-PotGen is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+PotGen is licensed under the [MIT License](https://opensource.org/licenses/MIT)
