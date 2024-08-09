@@ -13,9 +13,9 @@ PotGen simplifies the generation of `.pot`, `.po`, and `.mo` files, allowing you
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Create Configuration File](#create-configuration-file)
-- [Configure Script in `package.json`](#configure-script-in-packagejson)
-- [Run PotGen](#run-potgen)
+  - [Create Configuration File](#create-configuration-file)
+  - [Configure Script in `package.json`](#configure-script-in-packagejson)
+  - [Run PotGen](#run-potgen)
 - [Configuration](#configuration)
 - [Features](#features)
 - [Recent Updates](#recent-updates)
