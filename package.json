@@ -10,7 +10,9 @@
     "wordpress",
     "theme",
     "plugin",
+    "mo",
     "pot",
+    "po",
     "php",
     "js",
     "translation",
@@ -23,7 +25,8 @@
     "fs-extra": "^11.0.1",
     "glob": "^8.0.3",
     "gulp": "^5.0.0",
-    "gulp-po2mo": "^1.0.3"
+    "gulp-po2mo": "^1.0.3",
+    "kleur": "^4.1.5"
   },
   "repository": {
     "type": "git",

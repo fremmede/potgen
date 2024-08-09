@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
+const kleur = require('kleur');
 
 class PotGenerator {
   constructor(config) {
@@ -47,7 +48,7 @@ msgstr ""
 "POT-Creation-Date: ${currentDate}\\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
 "X-Generator: PotGen 1.0.0\\n"
-"X-Domain: ${this.pluginInfo.textDomain}\\n
+"X-Domain: ${this.pluginInfo.textDomain}\\n"
 `;
 
     return potContent;
@@ -61,10 +62,11 @@ msgstr ""
     const orderedFiles = glob.sync(sourcePattern, { cwd: this.pluginPath, nodir: true });
 
     let potContent = this.generatePotContent();
+    let hasContent = false; // Variable to check if there is content
 
     orderedFiles.forEach(file => {
       const content = fs.readFileSync(path.join(this.pluginPath, file), 'utf8');
-      const regex = /(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\(\s*(['"])((?:(?!\1).|\\\1)*)\1\s*(?:,\s*(['"])((?:(?!\3).|\\\3)*)\3)?\s*\)/g;
+      const regex = /(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\(\s*(['"])(.*?)\1\s*(?:,\s*(['"])(.*?)\3)?\s*\)/g;
       let match;
 
       while ((match = regex.exec(content)) !== null) {
@@ -75,22 +77,28 @@ msgstr ""
         // Decode HTML entities
         msgid = this.decodeHtmlEntities(msgid);
 
+        // Only add if the domain matches
         if (this.isValidDomain(domain)) {
           const lineNumber = content.substr(0, match.index).split('\n').length;
           potContent += `\n#: ${file}:${lineNumber}\n`;
           potContent += `msgid "${this.escapeString(msgid).replace(/"/g, '\\"')}"\n`;
           potContent += `msgstr ""\n`;
+          hasContent = true; // Valid content found
         }
       }
     });
 
     try {
-      console.log('Generating .pot file...');
-      fs.writeFileSync(path.join(languagesDir, path.basename(this.potFile)), potContent);
-      console.log(`Successful generation of .pot file: ${path.basename(this.potFile)}`);
+      if (hasContent) {
+        console.log(kleur.cyan(`Generating .pot file...`));
+        fs.writeFileSync(path.join(languagesDir, path.basename(this.potFile)), potContent);
+        console.log(`Successfully generated .pot file: ${path.basename(this.potFile)} ${kleur.green('✓')}`);
+      } else {
+        console.log(kleur.red(`Cannot generate .pot file: no translatable strings for domain '${this.pluginInfo.textDomain}'.`));
+      }
 
       // Check if createPoFiles is set to true before generating .po files
-      if (this.config.createPoFiles) {
+      if (this.config.createPoFiles && hasContent) {
         this.generatePoFile(languagesDir, 0);
       }
     } catch (error) {
@@ -106,7 +114,7 @@ msgstr ""
       const poFile = path.join(languagesDir, `${this.config.domain}-${lang}.po`);
 
       // Print the language being processed
-      console.log(`Generating .po files for: ${lang}...`);
+      console.log(kleur.cyan(`\n- Generating .po files for: ${lang}`));
 
       let poContent = `msgid ""\nmsgstr ""\n`;
       poContent += `"Project-Id-Version: ${this.pluginInfo.name} ${this.pluginInfo.version}\\n"\n`;
@@ -138,7 +146,7 @@ msgstr ""
       // Write the .po file
       fs.writeFileSync(poFile, poContent);
 
-      console.log(`.po file generated successfully: ${path.basename(poFile)}`);
+      console.log(`  .po file generated successfully: ${path.basename(poFile)} ${kleur.green('✓')}`);
 
       // Recursively call the method to generate the next .po file
       setTimeout(() => {
@@ -148,9 +156,8 @@ msgstr ""
   }
 
   isValidDomain(domain) {
-    return domain === this.pluginInfo.textDomain || 
-           domain === 'wc-swift-qr-payment-woo' || 
-           (domain === 'default' && this.pluginInfo.textDomain === 'default-domain');
+    // Only accept the domain defined in pot.json
+    return domain === this.pluginInfo.textDomain;
   }
 
   decodeHtmlEntities(str) {

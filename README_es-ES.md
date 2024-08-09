@@ -1,4 +1,5 @@
 # PotGen
+
 [![npm version](https://img.shields.io/npm/v/potgen.svg)](https://npmjs.org/package/potgen)
 [![npm downloads](https://img.shields.io/npm/dm/potgen.svg)](https://npmjs.org/package/potgen)
 [![Node Status](https://github.com/fremmede/potgen/actions/workflows/ci.yml/badge.svg)](https://github.com/fremmede/potgen/actions/workflows/node.js.yml)
@@ -6,35 +7,43 @@
 [![GitHub issues](https://img.shields.io/github/issues/fremmede/potgen)](https://github.com/fremmede/potgen/issues)
 [![NPM License](https://img.shields.io/npm/l/potgen)](https://npmjs.org/package/potgen)
 
-PotGen simplifica la generación de archivos `.pot`, permitiéndote crear archivos de traducción de manera rápida y eficiente, facilitando así la localización de tus proyectos.
+PotGen simplifies the generation of `.pot`, `.po`, and `.mo` files, allowing you to create translation files quickly and efficiently, thus facilitating the localization of your projects.
 
-## Tabla de Contenidos
+## Table of Contents
 
-- [Instalación](#instalación)
-- [Uso](#uso)
-  - [Crear Archivo de Configuración](#crear-archivo-de-configuración)
-  - [Configurar Script en `package.json`](#configurar-script-en-packagejson)
-  - [Ejecutar PotGen](#ejecutar-potgen)
-- [Configuración](#configuración)
-- [Características](#características)
-- [Actualizaciones Recientes](#actualizaciones-recientes)
-- [Contribución](#contribución)
-- [Donar](#donar) 
-- [Licencia](#licencia)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Create Configuration File](#create-configuration-file)
+- [Configure Script in `package.json`](#configure-script-in-packagejson)
+- [Run PotGen](#run-potgen)
+- [Configuration](#configuration)
+- [Features](#features)
+- [Recent Updates](#recent-updates)
+- [Contribution](#contribution)
+- [Donate](#donate)
+- [License](#license)
 
-## Instalación
+## Installation
 
-Para instalar PotGen, usa npm:
+To install PotGen, use npm:
 
 ```bash
 npm install potgen
 ```
 
-## Uso
+### Additional Requirements
 
-### Crear Archivo de Configuración
+To create `.mo` files, you need to have GetText installed. If you are on Windows, you can download and install GetText from:
 
-Si PotGen no genera un archivo `pot.json` en la raíz de tu proyecto tras la instalación, créalo manualmente con la siguiente configuración:
+*GetText for Windows*
+
+- **GetText V 0.14.4** [here](https://gnuwin32.sourceforge.net/packages/gettext.htm)
+
+## Usage
+
+### Create Configuration File
+
+If PotGen does not generate a `pot.json` file in the root of your project after installation, create it manually with the following configuration:
 
 ```json
 {
@@ -42,140 +51,164 @@ Si PotGen no genera un archivo `pot.json` en la raíz de tu proyecto tras la ins
   "destFile": "languages/${domain}.pot",
   "package": "Default Package",
   "domain": "default-domain",
-  "lastTranslator": "DEFAULT TRANSLATOR <default@example.com>",
+  "lastTranslator": "DEFAULT TRANSLATOR",
   "bugReport": "https://default.com/bugs",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "createPoFiles": false,
+  "languages": ["es_ES", "es_PE", "ru_RU"]
 }
 ```
 
-### Configurar Script en `package.json`
+### Configure Script in `package.json`
 
-Agrega un script para ejecutar PotGen en tu archivo `package.json`:
+Add the following scripts to your `package.json` file:
 
 ```json
-{
-  "scripts": {
-    "pot": "node node_modules/potgen/pot.js"
-  }
+"scripts": {
+  "pot": "node node_modules/potgen/pot.js",
+  "watch": "gulp --gulpfile pogen.js default",
+  "po2mo": "gulp --gulpfile pogen.js po2mo",
+  "lang": "gulp --gulpfile pogen.js lang"
 }
 ```
 
-### Ejecutar PotGen
+### Run PotGen
 
-Ejecuta el script usando npm:
+Depending on the configuration of `createPoFiles` in `pot.json`:
+
+#### If `createPoFiles` is `true`:
 
 ```bash
 npm run pot
 ```
 
-PotGen generará un archivo `.pot` en la ubicación especificada en `destFile` (por ejemplo, `languages/default-domain.pot`).
-
-## Configuración
-
-El archivo `pot.json` contiene las siguientes opciones de configuración:
-
-| Opción            | Descripción                                             | Valor Predeterminado                      |
-|-------------------|---------------------------------------------------------|-------------------------------------------|
-| `sourcePattern`   | Patrón glob que especifica los archivos a buscar        | `**/*.{php,js}`                           |
-| `destFile`        | Ruta para el archivo `.pot` generado                    | `languages/${domain}.pot`                 |
-| `package`         | Nombre de tu paquete o plugin                           | `Default Package`                         |
-| `domain`          | Dominio de texto utilizado para tu paquete o plugin     | `default-domain`                          |
-| `lastTranslator`  | Nombre y correo electrónico del último traductor        | `DEFAULT TRANSLATOR <default@example.com>`|
-| `bugReport`       | URL para reportar errores                               | `https://default.com/bugs`                |
-| `version`         | Versión de tu paquete o plugin                          | `1.0.0`                                   |
-
-## Características
-
-- 🚀 Genera automáticamente archivos `.pot` para plugins y temas de WordPress
-- 💻 Soporta archivos PHP y JavaScript
-- ⚙️ Configurable a través de un archivo JSON simple
-- 🔠 Maneja varias funciones de traducción de WordPress (`__`, `_e`, `_n`, `_x`)
-- ⚠️ Advierte sobre dominios no definidos
-
-## Actualizaciones Recientes
-
-### Cambios Implementados en la Versión 2.0.0
-
-Hemos actualizado PotGen para manejar correctamente varios casos especiales en la internacionalización de WordPress. Aquí están los principales cambios con ejemplos:
-
-#### 1. Manejo de HTML y Marcadores de Formato
-
-**Código PHP:**
-```php
-printf( __('Hey, I noticed you\'ve been using <strong>%1$s</strong> for more than 2 weeks.', 'text-domain'), 'WooCommerce' );
+**Expected output:**
+```
+Generating .pot file...
+Successfully generated .pot file: default-domain.pot ✓
+Generating .po files for: es_PE
+.po file generated successfully: default-domain-es_PE.po ✓
+Generating .po files for: ru_RU
+.po file generated successfully: default-domain-ru_RU.po ✓
 ```
 
-**Generado en .pot:**
-```
-msgid "Hey, I noticed you've been using <strong>%1$s</strong> for more than 2 weeks."
-msgstr ""
-```
+#### If `createPoFiles` is `false`:
 
-**Cambio:** Mantiene las etiquetas HTML y los marcadores de formato intactos.
-
-#### 2. Enlaces HTML y Múltiples Marcadores
-
-**Código PHP:**
-```php
-__( 'Thanks for installing %1$s v%2$s plugin. Click <a href="%3$s">here</a> to configure plugin settings.', 'text-domain' )
+```bash
+npm run pot
 ```
 
-**Generado en .pot:**
+**Expected output:**
 ```
-msgid "Thanks for installing %1$s v%2$s plugin. Click <a href=\"%3$s\">here</a> to configure plugin settings."
-msgstr ""
-```
-
-**Cambio:** Escapa correctamente las comillas en atributos HTML (`href=\"%3$s\"`).
-
-#### 3. Textos Largos con HTML y Apóstrofes
-
-**Código PHP:**
-```php
-__('Hey, I noticed you\'ve been using <strong>%1$s</strong> for more than 2 week – that's awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help me spread the word and boost my motivation.', 'text-domain')
+Generating .pot file...
+Successfully generated .pot file: default-domain.pot ✓
 ```
 
-**Generado en .pot:**
+### Using Gulp
+
+You can use the following commands to manage translation files:
+
+```bash
+gulp --gulpfile pogen.js default
 ```
-msgid "Hey, I noticed you've been using <strong>%1$s</strong> for more than 2 week – that's awesome! Could you please do me a BIG favor and give it a <strong>5-star</strong> rating on WordPress? Just to help me spread the word and boost my motivation."
-msgstr ""
-```
+or
 
-**Cambio:** Maneja correctamente apóstrofes y textos largos con HTML.
-
-#### 4. Decodificación de Entidades HTML
-
-**Código PHP:**
-```php
-esc_html_e( 'Nope&#44; maybe later', 'text-domain' );
+```bash
+npm run watch
 ```
 
-**Generado en .pot:**
+This will start the monitoring process for changes in `.po` files:
+
 ```
-msgid "Nope, maybe later"
-msgstr ""
+Starting 'default'...
+Watching for changes in .po files
 ```
 
-**Cambio:** Decodifica entidades HTML (&#44; se convierte en ,) para mejor legibilidad.
+To convert `.po` files to `.mo`:
 
-### Implementación
+```bash
+gulp --gulpfile pogen.js po2mo
+```
+or
 
-Estos cambios se realizaron en la función `generatePotFile()` de PotGen:
+```bash
+npm run po2mo
+```
 
-1. Expresión regular mejorada para capturar diversas funciones de internacionalización.
-2. Función `decodeHtmlEntities()` para manejar entidades HTML.
-3. Función `escapeString()` actualizada para escapar correctamente caracteres especiales.
+**Expected output:**
+```
+Starting 'po2mo'...
+Converting .po files to .mo
+Conversion completed ✓
+```
 
-## Contribución
+To convert `.po` files for a specific language:
 
-Si encuentras algún problema o tienes sugerencias para mejoras, no dudes en abrir un problema o enviar una solicitud de extracción en el repositorio de PotGen en GitHub.
+```bash
+gulp --gulpfile pogen.js lang --lang=es_PE
+```
+or
 
-## Donar
+```bash
+npm run lang -- --lang=es_PE
+```
 
-Si aprecias este proyecto y te gustaría apoyar su desarrollo continuo, puedes hacer una donación a través de [Ko-fi](https://ko-fi.com/fremmede). ¡Tu apoyo es muy apreciado!
+**Expected output:**
+```
+Starting 'lang'...
+Converting files matching es_PE.po
+Files found matching es_PE.po
+Conversion completed for es_PE.po ✓
+```
+
+## Configuration
+
+| Option               | Description                                                                 | Default Value               |
+|----------------------|-----------------------------------------------------------------------------|------------------------------|
+| **`sourcePattern`**  | Glob pattern that specifies the files to search                           | `**/*.{php,js}`             |
+| **`destFile`**       | Path and name of the destination `.pot` file.                             | `languages/${domain}.pot`    |
+| **`package`**        | Name of the package.                                                       | `Default Package`            |
+| **`domain`**         | Domain for the `.pot` file.                                               | `default-domain`             |
+| **`lastTranslator`** | Information about the last translator.                                     | `DEFAULT TRANSLATOR`         |
+| **`bugReport`**      | URL for reporting bugs.                                                    | `https://default.com/bugs`   |
+| **`version`**        | Version of the translation file.                                          | `1.0.0`                      |
+| **`createPoFiles`**  | **`true`**: Generates `.po` files in addition to the `.pot` file <br> **`false`**: Only generates the `.pot` file. | `false`                      |
+| **`languages`**      | List of languages for generating `.po` files. You can add more as needed. | `["es_ES", "es_PE", "ru_RU"]` |
+
+## Features
+
+- 🚀 **Automatically generates `.pot`, `.po`, and `.mo` files** for WordPress plugins and themes.
+- 💻 **Supports PHP and JavaScript files**.
+- ⚙️ **Configurable through a simple JSON file**.
+- 🔠 **Handles multiple WordPress translation functions** (`__`, `_e`, `_n`, `_x`).
+- ⚠️ **Warns about undefined domains**.
+- 🔄 **Options to convert `.po` files to `.mo` and generate `.po` files based on configuration**.
+
+## Recent Updates
+
+### Changes Implemented in Version 3.0.0
+
+- **Generation of `.po` and `.mo` Files:** PotGen can now also generate `.po` files and convert them to `.mo`, in addition to `.pot` files.
+- **Improved Gulp Support:** New Gulp commands have been added to watch for changes, convert `.po` files to `.mo`, and generate files for specific languages.
+- **Configuration Update:** The `createPoFiles` option now allows you to specify whether to generate `.po` files along with the `.pot` file.
+
+### Changes Implemented in Version 2.0.0
+
+- **HTML Handling and Format Markers:** Improved handling of HTML tags and format markers in translation strings.
+- **HTML Links and Multiple Markers:** Correct escaping of quotes in HTML attributes.
+- **Long Texts with HTML and Apostrophes:** Proper handling of apostrophes and long texts with HTML.
+- **HTML Entity Decoding:** Decoding of HTML entities for better readability in `.pot` files.
+
+## Contribution
+
+If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request in the PotGen repository on GitHub.
+
+## Donate
+
+If you appreciate this project and would like to support its ongoing development, you can make a donation through [Ko-fi](https://ko-fi.com/fremmede). Your support is greatly appreciated!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J710SIW5)
 
-## Licencia
+## License
 
-PotGen está licenciado bajo la [Licencia MIT](https://opensource.org/licenses/MIT).
+PotGen is licensed under the [MIT License](https://opensource.org/licenses/MIT)
