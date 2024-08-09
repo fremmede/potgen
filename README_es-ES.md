@@ -1,3 +1,6 @@
+Aquí tienes el contenido del README en formato `README.md`, mejorado y estructurado para mayor claridad y presentación:
+
+```markdown
 # PotGen
 
 [![npm version](https://img.shields.io/npm/v/potgen.svg)](https://npmjs.org/package/potgen)
@@ -7,43 +10,41 @@
 [![GitHub issues](https://img.shields.io/github/issues/fremmede/potgen)](https://github.com/fremmede/potgen/issues)
 [![NPM License](https://img.shields.io/npm/l/potgen)](https://npmjs.org/package/potgen)
 
-PotGen simplifies the generation of `.pot`, `.po`, and `.mo` files, allowing you to create translation files quickly and efficiently, thus facilitating the localization of your projects.
+PotGen simplifica la generación de archivos `.pot`, `.po` y `.mo`, permitiéndote crear archivos de traducción de manera rápida y eficiente, facilitando así la localización de tus proyectos.
 
-## Table of Contents
+## Tabla de Contenidos
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Create Configuration File](#create-configuration-file)
-- [Configure Script in `package.json`](#configure-script-in-packagejson)
-- [Run PotGen](#run-potgen)
-- [Configuration](#configuration)
-- [Features](#features)
-- [Recent Updates](#recent-updates)
-- [Contribution](#contribution)
-- [Donate](#donate)
-- [License](#license)
+- [Instalación](#instalación)
+- [Uso](#uso)
+  - [Crear Archivo de Configuración](#crear-archivo-de-configuración)
+  - [Configurar Script en `package.json`](#configurar-script-en-packagejson)
+  - [Ejecutar PotGen](#ejecutar-potgen)
+- [Configuración](#configuración)
+- [Características](#características)
+- [Actualizaciones Recientes](#actualizaciones-recientes)
+- [Contribución](#contribución)
+- [Donar](#donar)
+- [Licencia](#licencia)
 
-## Installation
+## Instalación
 
-To install PotGen, use npm:
+Para instalar PotGen, usa npm:
 
 ```bash
 npm install potgen
 ```
 
-### Additional Requirements
+### Requisitos Adicionales
 
-To create `.mo` files, you need to have GetText installed. If you are on Windows, you can download and install GetText from:
+Para la creación de archivos `.mo`, necesitas tener instalado GetText. Si estás en Windows, puedes descargar e instalar GetText desde:
 
-*GetText for Windows*
+- **GetText V 0.14.4** [aquí](https://gnuwin32.sourceforge.net/packages/gettext.htm)
 
-- **GetText V 0.14.4** [here](https://gnuwin32.sourceforge.net/packages/gettext.htm)
+## Uso
 
-## Usage
+### Crear Archivo de Configuración
 
-### Create Configuration File
-
-If PotGen does not generate a `pot.json` file in the root of your project after installation, create it manually with the following configuration:
+Si PotGen no genera un archivo `pot.json` en la raíz de tu proyecto tras la instalación, créalo manualmente con la siguiente configuración:
 
 ```json
 {
@@ -59,9 +60,9 @@ If PotGen does not generate a `pot.json` file in the root of your project after 
 }
 ```
 
-### Configure Script in `package.json`
+### Configurar Script en `package.json`
 
-Add the following scripts to your `package.json` file:
+Agrega los siguientes scripts a tu archivo `package.json`:
 
 ```json
 "scripts": {
@@ -72,17 +73,17 @@ Add the following scripts to your `package.json` file:
 }
 ```
 
-### Run PotGen
+### Ejecutar PotGen
 
-Depending on the configuration of `createPoFiles` in `pot.json`:
+Dependiendo de la configuración de `createPoFiles` en `pot.json`:
 
-#### If `createPoFiles` is `true`:
+#### Si `createPoFiles` es `true`:
 
 ```bash
 npm run pot
 ```
 
-**Expected output:**
+**Salida esperada:**
 ```
 Generating .pot file...
 Successfully generated .pot file: default-domain.pot ✓
@@ -92,68 +93,68 @@ Generating .po files for: ru_RU
 .po file generated successfully: default-domain-ru_RU.po ✓
 ```
 
-#### If `createPoFiles` is `false`:
+#### Si `createPoFiles` es `false`:
 
 ```bash
 npm run pot
 ```
 
-**Expected output:**
+**Salida esperada:**
 ```
 Generating .pot file...
 Successfully generated .pot file: default-domain.pot ✓
 ```
 
-### Using Gulp
+### Usar Gulp
 
-You can use the following commands to manage translation files:
+Puedes usar los siguientes comandos para manejar los archivos de traducción:
 
 ```bash
 gulp --gulpfile pogen.js default
 ```
-or
+o
 
 ```bash
 npm run watch
 ```
 
-This will start the monitoring process for changes in `.po` files:
+Esto iniciará el proceso de monitoreo para cambios en archivos `.po`:
 
 ```
 Starting 'default'...
 Watching for changes in .po files
 ```
 
-To convert `.po` files to `.mo`:
+Para convertir archivos `.po` a `.mo`:
 
 ```bash
 gulp --gulpfile pogen.js po2mo
 ```
-or
+o
 
 ```bash
 npm run po2mo
 ```
 
-**Expected output:**
+**Salida esperada:**
 ```
 Starting 'po2mo'...
 Converting .po files to .mo
 Conversion completed ✓
 ```
 
-To convert `.po` files for a specific language:
+Para convertir archivos `.po` para un idioma específico:
 
 ```bash
 gulp --gulpfile pogen.js lang --lang=es_PE
 ```
-or
+o
 
 ```bash
 npm run lang -- --lang=es_PE
 ```
 
-**Expected output:**
+**Salida esperada:**
 ```
 Starting 'lang'...
 Converting files matching es_PE.po
@@ -161,54 +162,66 @@ Files found matching es_PE.po
 Conversion completed for es_PE.po ✓
 ```
 
-## Configuration
+## Configuración
 
-| Option               | Description                                                                 | Default Value               |
+| Opción               | Descripción                                                                 | Valor Predeterminado         |
 |----------------------|-----------------------------------------------------------------------------|------------------------------|
-| **`sourcePattern`**  | Glob pattern that specifies the files to search                           | `**/*.{php,js}`             |
-| **`destFile`**       | Path and name of the destination `.pot` file.                             | `languages/${domain}.pot`    |
-| **`package`**        | Name of the package.                                                       | `Default Package`            |
-| **`domain`**         | Domain for the `.pot` file.                                               | `default-domain`             |
-| **`lastTranslator`** | Information about the last translator.                                     | `DEFAULT TRANSLATOR`         |
-| **`bugReport`**      | URL for reporting bugs.                                                    | `https://default.com/bugs`   |
-| **`version`**        | Version of the translation file.                                          | `1.0.0`                      |
-| **`createPoFiles`**  | **`true`**: Generates `.po` files in addition to the `.pot` file <br> **`false`**: Only generates the `.pot` file. | `false`                      |
-| **`languages`**      | List of languages for generating `.po` files. You can add more as needed. | `["es_ES", "es_PE", "ru_RU"]` |
+| **`sourcePattern`**  | Patrón glob que especifica los archivos a buscar                          | `**/*.{php,js}`             |
+| **`destFile`**       | Ruta y nombre del archivo `.pot` de destino.                               | `languages/${domain}.pot`    |
+| **`package`**        | Nombre del paquete.                                                         | `Default Package`            |
+| **`domain`**         | Dominio para el archivo `.pot`.                                            | `default-domain`             |
+| **`lastTranslator`** | Información del último traductor.                                          | `DEFAULT TRANSLATOR`         |
+| **`bugReport`**      | URL para reportar errores.                                                 | `https://default.com/bugs`   |
+| **`version`**        | Versión del archivo de traducción.                                         | `1.0.0`                      |
+| **`createPoFiles`**  | **`true`**: Genera archivos `.po` además del archivo `.pot` <br> **`false`**: Solo genera el archivo `.pot`. | `false`                      |
+| **`languages`**      | Lista de idiomas para generar archivos `.po`. Puedes agregar los que necesites. | `["es_ES", "es_PE", "ru_RU"]` |
 
-## Features
+## Características
 
-- 🚀 **Automatically generates `.pot`, `.po`, and `.mo` files** for WordPress plugins and themes.
-- 💻 **Supports PHP and JavaScript files**.
-- ⚙️ **Configurable through a simple JSON file**.
-- 🔠 **Handles multiple WordPress translation functions** (`__`, `_e`, `_n`, `_x`).
-- ⚠️ **Warns about undefined domains**.
-- 🔄 **Options to convert `.po` files to `.mo` and generate `.po` files based on configuration**.
+- 🚀 **Genera automáticamente archivos `.pot`, `.po` y `.mo`** para plugins y temas de WordPress.
+- 💻 **Soporta archivos PHP y JavaScript**.
+- ⚙️ **Configurable a través de un archivo JSON** simple.
+- 🔠 **Maneja varias funciones de traducción de WordPress** (`__`, `_e`, `_n`, `_x`).
+- ⚠️ **Advierte sobre dominios no definidos**.
+- 🔄 **Opciones para convertir archivos `.po` a `.mo`** y generar archivos `.po` según la configuración.
 
-## Recent Updates
+## Actualizaciones Recientes
 
-### Changes Implemented in Version 3.0.0
+### Cambios Implementados en la Versión 3.0.0
 
-- **Generation of `.po` and `.mo` Files:** PotGen can now also generate `.po` files and convert them to `.mo`, in addition to `.pot` files.
-- **Improved Gulp Support:** New Gulp commands have been added to watch for changes, convert `.po` files to `.mo`, and generate files for specific languages.
-- **Configuration Update:** The `createPoFiles` option now allows you to specify whether to generate `.po` files along with the `.pot` file.
+- **Generación de Archivos `.po` y `.mo`:** Ahora PotGen también puede generar archivos `.po` y convertirlos a `.mo`, además de los archivos `.pot`.
+- **Soporte Mejorado para Gulp:** Se han agregado nuevos comandos Gulp para observar cambios, convertir archivos `.po` a `.mo`, y generar archivos para idiomas específicos.
+- **Actualización en la Configuración:** La opción `createPoFiles` ahora permite especificar si se deben generar archivos `.po` junto con el archivo `.pot`.
 
-### Changes Implemented in Version 2.0.0
+### Cambios Implementados en la Versión 2.0.0
 
-- **HTML Handling and Format Markers:** Improved handling of HTML tags and format markers in translation strings.
-- **HTML Links and Multiple Markers:** Correct escaping of quotes in HTML attributes.
-- **Long Texts with HTML and Apostrophes:** Proper handling of apostrophes and long texts with HTML.
-- **HTML Entity Decoding:** Decoding of HTML entities for better readability in `.pot` files.
+- **Manejo de HTML y Marcadores de Formato:** Mejora en la captura de etiquetas HTML y marcadores de formato en cadenas de traducción.
+- **Enlaces HTML y Múltiples Marcadores:** Escapado correcto de comillas en atributos HTML.
+- **Textos Largos con HTML y Apóstrofes:** Manejo adecuado de apóstrofes y textos largos con HTML.
+- **Decodificación de Entidades HTML:** Decodificación de entidades HTML para mejor legibilidad en los archivos `.pot`.
 
-## Contribution
+## Contribución
 
-If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request in the PotGen repository on GitHub.
+Si encuentras algún problema o tienes sugerencias para mejoras, no dudes en abrir un problema o enviar una solicitud de extracción en el repositorio de PotGen en GitHub.
 
-## Donate
+## Donar
 
-If you appreciate this project and would like to support its ongoing development, you can make a donation through [Ko-fi](https://ko-fi.com/fremmede). Your support is greatly appreciated!
+Si aprecias este proyecto y te gustaría apoyar su desarrollo continuo, puedes hacer una donación a través de [Ko-fi](https://ko-fi.com/fremmede). ¡Tu apoyo es muy apreciado!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J710SIW5)
 
-## License
+## Licencia
 
-PotGen is licensed under the [MIT License](https://opensource.org/licenses/MIT)
+PotGen está licenciado bajo la [Licencia MIT](https://opensource.org/licenses/MIT).
+```
+
+### Notas sobre el Formato
+
+- **Encabezados y Secciones**: Se han utilizado encabezados y secciones para mejorar la organización.
+- **Listas y Tablas**: Se han utilizado listas y tablas para presentar la información de manera clara y concisa.
+- **Comandos y Salidas**: Se han formateado los comandos y las salidas esperadas para facilitar la lectura.
+
+Si necesitas más ajustes o tienes otras preguntas, ¡no dudes en preguntar!
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/1374474/15523791-3dfc-4467-854c-ba73587ddb16/paste.txt
