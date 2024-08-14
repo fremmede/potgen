@@ -90,11 +90,11 @@ msgstr ""
 
     try {
       if (hasContent) {
-        console.log(kleur.cyan(`Generating .pot file...`));
+        console.log(kleur.cyan(` ➖ Generating .pot file...`));
         fs.writeFileSync(path.join(languagesDir, path.basename(this.potFile)), potContent);
-        console.log(`Successfully generated .pot file: ${path.basename(this.potFile)} ${kleur.green('✓')}`);
+        console.log(`    Successfully generated .pot file: ${path.basename(this.potFile)} ${kleur.green('✔')}`);
       } else {
-        console.log(kleur.red(`Cannot generate .pot file: no translatable strings for domain '${this.pluginInfo.textDomain}'.`));
+        console.log(kleur.red(`    Cannot generate .pot file: no translatable strings for domain '${this.pluginInfo.textDomain}'. ${kleur.red('✘')}`));
       }
 
       // Check if createPoFiles is set to true before generating .po files
@@ -102,7 +102,7 @@ msgstr ""
         this.generatePoFile(languagesDir, 0);
       }
     } catch (error) {
-      console.error('Error writing the .pot file:', error.message);
+      console.error('    Error writing the .pot file:', error.message);
     }
   }
 
@@ -114,7 +114,7 @@ msgstr ""
       const poFile = path.join(languagesDir, `${this.config.domain}-${lang}.po`);
 
       // Print the language being processed
-      console.log(kleur.cyan(`\n- Generating .po files for: ${lang}`));
+      console.log(kleur.cyan(`\n ➖ Generating .po files for: ${lang}`));
 
       let poContent = `msgid ""\nmsgstr ""\n`;
       poContent += `"Project-Id-Version: ${this.pluginInfo.name} ${this.pluginInfo.version}\\n"\n`;
@@ -146,7 +146,7 @@ msgstr ""
       // Write the .po file
       fs.writeFileSync(poFile, poContent);
 
-      console.log(`  .po file generated successfully: ${path.basename(poFile)} ${kleur.green('✓')}`);
+      console.log(`    .po file generated successfully: ${path.basename(poFile)} ${kleur.green('✔')}`);
 
       // Recursively call the method to generate the next .po file
       setTimeout(() => {
