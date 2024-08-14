@@ -1,6 +1,6 @@
 {
   "name": "potgen",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "PotGen makes generating .pot files a straightforward process. With PotGen, you can create translation files quickly and efficiently, simplifying the localization of your projects.",
   "main": "pot.js",
   "scripts": {
